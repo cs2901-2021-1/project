@@ -18,6 +18,7 @@ setuptools.setup(
     ],
     install_requires=[
         'tensorflow',
+        'pandas',
     ],
     entry_points={
         "console_scripts": [

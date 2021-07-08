@@ -1,13 +1,13 @@
 # Maintainer: Alberto Oporto Ames <alberto.oporto@utec.edu.pe>
 
 pkgname=mat-model-git
-pkgver=r1.856f265
+pkgver=r2.8ad8b60
 pkgrel=1
 pkgdesc="Modelos de matrículas"
 arch=('any')
 url=""
 license=('Custom')
-depends=("python-tensorflow")
+depends=("python-tensorflow" "python-pandas")
 makedepends=("python-setuptools")
 checkdepends=()
 optdepends=()
