@@ -1,7 +1,7 @@
 # Maintainer: Alberto Oporto Ames <alberto.oporto@utec.edu.pe>
 
 pkgname=mat-model-git
-pkgver=r4.3ac50b1
+pkgver=r4.cbe5592
 pkgrel=1
 pkgdesc="Modelos de matrículas"
 arch=('any')
