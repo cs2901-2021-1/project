@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
-@RequestMapping(path = "/user")
+@RequestMapping(path = "/api-sec01-group01/user")
 public class UsuarioController {
     static final Logger logger = Logger.getLogger(UsuarioController.class.getName());
     private final UsuarioService usuarioService;

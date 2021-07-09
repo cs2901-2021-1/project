@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.logging.Logger;
 
 @RestController
-@RequestMapping(path = "/admin")
+@RequestMapping(path = "/api-sec01-group01/admin")
 public class AdminController {
     static final Logger logger = Logger.getLogger(AdminController.class.getName());
     private final UsuarioService usuarioService;
