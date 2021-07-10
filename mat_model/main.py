@@ -1,17 +1,20 @@
 import sys
 import argparse
 
-def import_models():
+def import_models(args: argparse.Namespace):
     from .models import models
-    return models()
+    return models(args.course, args.students)
 
 def train(args: argparse.Namespace) -> None:
-    m = import_models()
-    m.train(args.course, args.students)
+    m = import_models(args)
+    m.train()
 
 def predict(args: argparse.Namespace) -> None:
-    m = import_models()
-    m.predict(args.course, args.students)
+    m = import_models(args)
+
+    print("p")
+    for p in m.predict():
+        print(p)
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Modelos de matrículas")
