@@ -1,11 +1,11 @@
-package com.example.restbackend.security.oauth2.oauthUser;
+package com.example.restbackend.security.oauth2.oauthuser;
 
 import java.util.Map;
 
 public abstract class OAuth2UserInfo {
     protected Map<String, Object> attributes;
 
-    public OAuth2UserInfo(Map<String, Object> attributes) {
+    protected OAuth2UserInfo(Map<String, Object> attributes) {
         this.attributes = attributes;
     }
 

@@ -21,6 +21,8 @@ public class UserPrincipal implements OAuth2User, UserDetails {
         this.id = id;
         this.email = email;
         this.authorities = authorities;
+        var name = " ";
+        var username = " ";
     }
 
     public static UserPrincipal create(Usuario usuario) {
@@ -56,7 +58,7 @@ public class UserPrincipal implements OAuth2User, UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return username;
     }
 
     @Override
@@ -94,5 +96,7 @@ public class UserPrincipal implements OAuth2User, UserDetails {
     }
 
     @Override
-    public String getName() { return id; }
+    public String getName() { 
+        return name; 
+    }
 }

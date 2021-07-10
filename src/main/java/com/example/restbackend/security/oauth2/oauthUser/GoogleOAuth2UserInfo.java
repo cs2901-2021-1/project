@@ -1,4 +1,4 @@
-package com.example.restbackend.security.oauth2.oauthUser;
+package com.example.restbackend.security.oauth2.oauthuser;
 
 import java.util.Map;
 

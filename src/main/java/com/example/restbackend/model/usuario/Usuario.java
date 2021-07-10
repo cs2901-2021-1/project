@@ -1,6 +1,5 @@
 package com.example.restbackend.model.usuario;
 
-//import com.example.restbackend.model.authProvider.AuthProvider;
 import com.example.restbackend.model.usuarioDTO.UsuarioDTO;
 
 import javax.persistence.*;
@@ -22,8 +21,6 @@ public class Usuario {
     private String role;
     @Column
     private String googleId;
-
-    //private AuthProvider provider;
 
     public Usuario(){}
 
@@ -91,15 +88,7 @@ public class Usuario {
     public void setGoogleId(String googleId) {
         this.googleId = googleId;
     }
-/*
-    public AuthProvider getProvider() {
-        return provider;
-    }
 
-    public void setProvider(AuthProvider provider) {
-        this.provider = provider;
-    }
-*/
     @Override
     public String toString() {
         return "Persona : " + "id = " + id + ", nombre =  " + name + ", email = " + email + " role: " + role;

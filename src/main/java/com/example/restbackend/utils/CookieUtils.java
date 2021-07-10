@@ -6,7 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Base64;
 import java.util.Optional;
-public class CookieUtils {
+class CookieUtils {
+
+    private CookieUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static Optional<Cookie> getCookie(HttpServletRequest request, String name) {
         Cookie[] cookies = request.getCookies();
 
