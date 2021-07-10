@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List, Optional
 
 import tensorflow as tf
 import pandas as pd
@@ -9,7 +9,7 @@ class models(object):
         self.course_id     = course_id
         self.students_path = students_path
 
-    def __get_df(self) -> Union[pd.DataFrame, None]:
+    def __get_df(self) -> Optional[pd.DataFrame]:
         df = pd.read_csv(self.students_path)
 
         if isinstance(df, pd.DataFrame):
