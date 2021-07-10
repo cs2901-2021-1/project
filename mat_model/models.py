@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 
 import tensorflow as tf
 import pandas as pd
@@ -9,14 +9,29 @@ class models(object):
         self.course_id     = course_id
         self.students_path = students_path
 
-    def train(self):
-        print(f"TODO train")
-
-    def predict(self) -> List[float]:
-        """Get a vector p of probabilities."""
+    def __get_df(self) -> Union[pd.DataFrame, None]:
         df = pd.read_csv(self.students_path)
 
         if isinstance(df, pd.DataFrame):
+            return df
+        else:
+            return None
+
+    def train(self):
+        df = self.__get_df()
+
+        if df:
+            self.__train_df(df)
+
+    def __train_df(self, df: pd.DataFrame):
+        # TODO
+        pass
+
+    def predict(self) -> List[float]:
+        """Get a vector p of probabilities."""
+        df = self.__get_df()
+
+        if df:
             return self.__predict_df(df)
         else:
             return []
