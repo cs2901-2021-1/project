@@ -1,4 +1,4 @@
-from typing import List, Optional, Any
+from typing import List, Optional, Any, Dict
 from tensorflow.keras.layers.experimental.preprocessing import Normalization
 
 import tensorflow as tf
@@ -101,11 +101,16 @@ class models(object):
     def __predict_df(self, df: pd.DataFrame) -> List[float]:
         model = self.__load_model()
 
-        if model is not None:
-            pass
-        else:
+        if model is None:
             return []
 
-        # TODO
-        return [-1.0]*df.size
+        input_dict = self.__df2tfdict(df)
+        predictions = model.predict(input_dict)
+        return [x[0] for x in tf.nn.sigmoid(predictions).numpy()]
 
+    def __df2tfdict(self, df: pd.DataFrame) -> Dict:
+        df_dict: Any = df.to_dict()
+        return {
+            name: tf.convert_to_tensor(list(value.values()))
+            for name, value in df_dict.items()
+        }
