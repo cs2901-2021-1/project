@@ -70,7 +70,7 @@ class models(object):
         ds_train = self.__df2ds(df_train)
         ds_val   = self.__df2ds(df_val)
 
-        model = self.__make_model(["test_val"], ds_train)
+        model = self.__make_model(["test_val", "test_val2"], ds_train)
 
         model.compile(
             optimizer='adam',
@@ -80,6 +80,14 @@ class models(object):
         model.fit(ds_train, epochs=10, validation_data=ds_val)
 
         self.__save_model(model)
+
+    def __load_model(self) -> Optional[tf.keras.Model]:
+        model: Any =  tf.keras.models.load_model(self.__model_path())
+
+        if isinstance(model, tf.keras.Model):
+            return model
+        else:
+            return None
 
     def predict(self) -> List[float]:
         """Get a vector p of probabilities."""
@@ -91,6 +99,13 @@ class models(object):
             return []
 
     def __predict_df(self, df: pd.DataFrame) -> List[float]:
+        model = self.__load_model()
+
+        if model is not None:
+            pass
+        else:
+            return []
+
         # TODO
         return [-1.0]*df.size
 
