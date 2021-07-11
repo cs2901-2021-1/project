@@ -1,4 +1,4 @@
-from typing import List, Optional, Any
+from typing import List, Optional, Any, Dict
 from tensorflow.keras.layers.experimental.preprocessing import Normalization
 
 import tensorflow as tf
@@ -9,6 +9,9 @@ class models(object):
     def __init__(self, course_id: str, students_path: str):
         self.course_id     = course_id
         self.students_path = students_path
+
+        # TODO
+        self.inputs_cols   = ["test_val", "test_val2"]
 
     def __model_path(self) -> str:
         return f"model-{self.course_id}"
@@ -37,11 +40,11 @@ class models(object):
 
         return layer(feature)
 
-    def __make_model(self, inputs: List[str], ds: tf.data.Dataset) -> tf.keras.Model:
+    def __make_model(self, ds: tf.data.Dataset) -> tf.keras.Model:
         all_inputs = []
         all_features = []
 
-        for input in inputs:
+        for input in self.inputs_cols:
             col = tf.keras.Input(shape=(1,), name=input)
             encoded = self.__encode(col, input, ds)
             all_inputs.append(col)
@@ -70,7 +73,7 @@ class models(object):
         ds_train = self.__df2ds(df_train)
         ds_val   = self.__df2ds(df_val)
 
-        model = self.__make_model(["test_val"], ds_train)
+        model = self.__make_model(ds_train)
 
         model.compile(
             optimizer='adam',
@@ -80,6 +83,14 @@ class models(object):
         model.fit(ds_train, epochs=10, validation_data=ds_val)
 
         self.__save_model(model)
+
+    def __load_model(self) -> Optional[tf.keras.Model]:
+        model: Any =  tf.keras.models.load_model(self.__model_path())
+
+        if isinstance(model, tf.keras.Model):
+            return model
+        else:
+            return None
 
     def predict(self) -> List[float]:
         """Get a vector p of probabilities."""
@@ -91,6 +102,18 @@ class models(object):
             return []
 
     def __predict_df(self, df: pd.DataFrame) -> List[float]:
-        # TODO
-        return [-1.0]*df.size
+        model = self.__load_model()
 
+        if model is None:
+            return []
+
+        input_dict = self.__df2tfdict(df)
+        predictions = model.predict(input_dict)
+        return [x[0] for x in tf.nn.sigmoid(predictions).numpy()]
+
+    def __df2tfdict(self, df: pd.DataFrame) -> Dict:
+        df_dict: Any = df.to_dict()
+        return {
+            name: tf.convert_to_tensor(list(value.values()))
+            for name, value in df_dict.items()
+        }
