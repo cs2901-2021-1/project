@@ -1,4 +1,6 @@
-package com.example.restbackend.model.usuariodto;
+package com.example.restbackend.model.usuarioDTO;
+
+//import com.example.restbackend.model.authProvider.AuthProvider;
 
 public class UsuarioDTO {
     private Long idDTO;
@@ -7,6 +9,7 @@ public class UsuarioDTO {
     private String imageUrlDTO;
     private String roleDTO;
     private String googleIdDTO;
+    //private AuthProvider provider;
 
     public UsuarioDTO() {}
     public UsuarioDTO(Long idDTO, String nameDTO, String emailDTO, String imageUrlDTO, String roleDTO, String googleIdDTO) {
@@ -61,5 +64,14 @@ public class UsuarioDTO {
     public String getGoogleIdDTO() { return googleIdDTO; }
 
     public void setGoogleIdDTO(String googleIdDTO) { this.googleIdDTO = googleIdDTO; }
+/*
+    public AuthProvider getProvider() {
+        return provider;
+    }
 
+    public void setProvider(AuthProvider provider) {
+        this.provider = provider;
+    }
+
+ */
 }

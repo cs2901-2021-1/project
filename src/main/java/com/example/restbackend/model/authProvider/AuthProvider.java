@@ -1,1 +1,6 @@
-package com.example.restbackend.model.authprovider;
+package com.example.restbackend.model.authProvider;
+/*
+public enum AuthProvider {
+    google
+}
+*/

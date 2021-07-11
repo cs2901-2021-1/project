@@ -33,6 +33,7 @@ public class UsuarioService {
             return userOptional.get();
         else
             return null;
+            //throw new CustomException("El usuario con el id " + id + " no existe!");
     }
 
     public Usuario findOneByEmail(String email) {
@@ -41,6 +42,7 @@ public class UsuarioService {
             return userOptional.get();
         else
             return null;
+            //throw new CustomException("El usuario con el email " + email + " no existe!");
     }
 
     public Usuario findOneByGoogleId(String googleId){
@@ -49,6 +51,7 @@ public class UsuarioService {
             return userOptional.get();
         else
             return null;
+            //throw new CustomException("El usuario con el id " + googleId + " no existe!");
     }
 
     public void addNewUsuario(Usuario user) {
@@ -67,6 +70,8 @@ public class UsuarioService {
     }
 
     public void deleteUsuario(String email){
+        var user = usuarioRepository.findUsuarioByEmail(email)
+                .orElseThrow(() -> new CustomException("La persona con el email: " + email + ", no existe."));
         usuarioRepository.deleteUsuarioByEmail(email);
     }
 

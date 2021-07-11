@@ -1,4 +1,4 @@
-package com.example.restbackend.customexception;
+package com.example.restbackend.customException;
 
 public class CustomException extends RuntimeException {
     public CustomException(String exception) {

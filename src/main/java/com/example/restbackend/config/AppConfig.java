@@ -13,5 +13,10 @@ import java.util.List;
 @Configuration
 @ConfigurationProperties(prefix = "app")
 public class AppConfig {
-    
+    private List<String> authorizedRedirectUris = new ArrayList<>();
+
+    private String tokenSecret;
+
+    private long tokenExpirationMsec;
+
 }

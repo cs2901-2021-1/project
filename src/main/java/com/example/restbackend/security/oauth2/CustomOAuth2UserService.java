@@ -1,6 +1,7 @@
 package com.example.restbackend.security.oauth2;
 
 import com.example.restbackend.customException.OAuth2AuthenticationProcessingException;
+//import com.example.restbackend.model.authProvider.AuthProvider;
 import com.example.restbackend.model.usuario.Usuario;
 import com.example.restbackend.model.usuario.UsuarioRepository;
 import com.example.restbackend.model.usuarioDTO.UsuarioDTO;
@@ -47,6 +48,14 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         Usuario usuario;
         if(usuarioOptional.isPresent()) {
             usuario = usuarioOptional.get();
+            /*
+            if(!usuario.getProvider().equals(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()))) {
+                throw new OAuth2AuthenticationProcessingException("Looks like you're signed up with " +
+                        usuario.getProvider() + " account. Please use your " + usuario.getProvider() +
+                        " account to login.");
+            }
+            */
+
             usuario = updateExistingUser(usuario, oAuth2UserInfo);
         } else {
             usuario = registerNewUser(oAuth2UserRequest, oAuth2UserInfo);
@@ -54,8 +63,9 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         return UserPrincipal.create(usuario, oAuth2User.getAttributes());
     }
 
-    private Usuario registerNewUser(OAuth2UserInfo oAuth2UserInfo) {
+    private Usuario registerNewUser(OAuth2UserRequest oAuth2UserRequest, OAuth2UserInfo oAuth2UserInfo) {
         Usuario usuario = new Usuario();
+        //usuario.setProvider(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()));
         usuario.setGoogleId(oAuth2UserInfo.getId());
         usuario.setName(oAuth2UserInfo.getName());
         usuario.setEmail(oAuth2UserInfo.getEmail());
