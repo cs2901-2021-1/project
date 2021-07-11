@@ -1,4 +1,5 @@
 from typing import List, Optional
+from sklearn.model_selection import train_test_split
 
 import tensorflow as tf
 import pandas as pd
@@ -20,18 +21,21 @@ class models(object):
     def train(self):
         df = self.__get_df()
 
-        if df:
+        if df is not None:
             self.__train_df(df)
 
     def __train_df(self, df: pd.DataFrame):
+        df.rename(columns={"matricula": "target"})
+
+        df_train, df_val = train_test_split(df, test_size=0.2)
+
         # TODO
-        pass
 
     def predict(self) -> List[float]:
         """Get a vector p of probabilities."""
         df = self.__get_df()
 
-        if df:
+        if df is not None:
             return self.__predict_df(df)
         else:
             return []

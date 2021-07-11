@@ -17,8 +17,9 @@ setuptools.setup(
         "License :: Other/Proprietary License",
     ],
     install_requires=[
-        'tensorflow',
         'pandas',
+        'scikit-learn',
+        'tensorflow',
     ],
     entry_points={
         "console_scripts": [
