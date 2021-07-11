@@ -1,13 +1,8 @@
 from typing import List, Optional, Any
+from tensorflow.keras.layers.experimental.preprocessing import Normalization
 
 import tensorflow as tf
 import pandas as pd
-
-def df2ds( df: pd.DataFrame, target: str = "target", batch_size = 32) -> tf.data.Dataset:
-    df = df.copy()
-    labels = df.pop(target)
-    ds = tf.data.Dataset.from_tensor_slices((dict(df), labels))
-    return ds.shuffle(buffer_size=len(df)).batch(batch_size)
 
 class models(object):
     """Model training and usage"""
@@ -23,6 +18,12 @@ class models(object):
         else:
             return None
 
+    def __df2ds(self, df: pd.DataFrame, target: str = "target", batch_size = 32) -> tf.data.Dataset:
+        df = df.copy()
+        labels = df.pop(target)
+        ds = tf.data.Dataset.from_tensor_slices((dict(df), labels))
+        return ds.shuffle(buffer_size=len(df)).batch(batch_size)
+
     def train(self):
         df = self.__get_df()
 
@@ -35,8 +36,8 @@ class models(object):
         df_val = df.sample(frac=0.2)
         df_train:Any = df.drop(df_val.index)
 
-        ds_train = df2ds(df_train)
-        ds_val   = df2ds(df_val)
+        ds_train = self.__df2ds(df_train)
+        ds_val   = self.__df2ds(df_val)
         # TODO
 
     def predict(self) -> List[float]:
