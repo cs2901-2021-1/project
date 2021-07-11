@@ -17,8 +17,8 @@ setuptools.setup(
         "License :: Other/Proprietary License",
     ],
     install_requires=[
-        'tensorflow',
         'pandas',
+        'tensorflow',
     ],
     entry_points={
         "console_scripts": [
