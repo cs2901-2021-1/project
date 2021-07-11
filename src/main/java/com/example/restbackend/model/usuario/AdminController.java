@@ -1,6 +1,6 @@
 package com.example.restbackend.model.usuario;
 
-import com.example.restbackend.model.usuarioDTO.UsuarioDTO;
+import com.example.restbackend.model.usuario_dto.UsuarioDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

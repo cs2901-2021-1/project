@@ -1,9 +1,8 @@
 package com.example.restbackend.security.oauth2;
 
 import com.example.restbackend.config.AppConfig;
-import com.example.restbackend.customException.BadRequestException;
+import com.example.restbackend.custom_exception.BadRequestException;
 import com.example.restbackend.security.TokenProvider;
-import com.example.restbackend.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.example.restbackend.utils.CookieUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

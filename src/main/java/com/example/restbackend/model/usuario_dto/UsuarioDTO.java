@@ -1,4 +1,4 @@
-package com.example.restbackend.model.usuarioDTO;
+package com.example.restbackend.model.usuario_dto;
 
 public class UsuarioDTO {
     private Long idDTO;

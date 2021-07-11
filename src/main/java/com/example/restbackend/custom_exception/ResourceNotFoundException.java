@@ -1,4 +1,4 @@
-package com.example.restbackend.customException;
+package com.example.restbackend.custom_exception;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;

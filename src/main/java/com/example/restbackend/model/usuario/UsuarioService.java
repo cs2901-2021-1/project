@@ -1,7 +1,7 @@
 package com.example.restbackend.model.usuario;
 
-import com.example.restbackend.customException.CustomException;
-import com.example.restbackend.customException.ResourceNotFoundException;
+import com.example.restbackend.custom_exception.CustomException;
+import com.example.restbackend.custom_exception.ResourceNotFoundException;
 import com.example.restbackend.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
