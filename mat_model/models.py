@@ -10,6 +10,9 @@ class models(object):
         self.course_id     = course_id
         self.students_path = students_path
 
+        # TODO
+        self.inputs_cols   = ["test_val", "test_val2"]
+
     def __model_path(self) -> str:
         return f"model-{self.course_id}"
 
@@ -37,11 +40,11 @@ class models(object):
 
         return layer(feature)
 
-    def __make_model(self, inputs: List[str], ds: tf.data.Dataset) -> tf.keras.Model:
+    def __make_model(self, ds: tf.data.Dataset) -> tf.keras.Model:
         all_inputs = []
         all_features = []
 
-        for input in inputs:
+        for input in self.inputs_cols:
             col = tf.keras.Input(shape=(1,), name=input)
             encoded = self.__encode(col, input, ds)
             all_inputs.append(col)
@@ -70,7 +73,7 @@ class models(object):
         ds_train = self.__df2ds(df_train)
         ds_val   = self.__df2ds(df_val)
 
-        model = self.__make_model(["test_val", "test_val2"], ds_train)
+        model = self.__make_model(ds_train)
 
         model.compile(
             optimizer='adam',
