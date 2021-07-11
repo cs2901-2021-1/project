@@ -10,6 +10,9 @@ class models(object):
         self.course_id     = course_id
         self.students_path = students_path
 
+    def __model_path(self) -> str:
+        return f"model-{self.course_id}"
+
     def __get_df(self) -> Optional[pd.DataFrame]:
         df = pd.read_csv(self.students_path)
 
@@ -49,6 +52,9 @@ class models(object):
         output = tf.keras.layers.Dense(1)(x)
         return tf.keras.Model(all_inputs, output)
 
+    def __save_model(self, model: tf.keras.Model):
+        model.save(self.__model_path())
+
     def train(self):
         df = self.__get_df()
 
@@ -72,7 +78,8 @@ class models(object):
             metrics=["accuracy"]
         )
         model.fit(ds_train, epochs=10, validation_data=ds_val)
-        # TODO
+
+        self.__save_model(model)
 
     def predict(self) -> List[float]:
         """Get a vector p of probabilities."""
