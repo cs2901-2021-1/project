@@ -25,7 +25,7 @@ class models(object):
             self.__train_df(df)
 
     def __train_df(self, df: pd.DataFrame):
-        df.rename(columns={"matricula": "target"})
+        df = df.rename(columns={"matricula": "target"})
 
         df_train, df_val = train_test_split(df, test_size=0.2)
 
