@@ -18,7 +18,6 @@ setuptools.setup(
     ],
     install_requires=[
         'pandas',
-        'scikit-learn',
         'tensorflow',
     ],
     entry_points={

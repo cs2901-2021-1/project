@@ -1,8 +1,13 @@
-from typing import List, Optional
-from sklearn.model_selection import train_test_split
+from typing import List, Optional, Any
 
 import tensorflow as tf
 import pandas as pd
+
+def df2ds(df: pd.DataFrame, target: str = "target") -> tf.data.Dataset:
+    df = df.copy()
+    labels = df.pop(target)
+    ds = tf.data.Dataset.from_tensor_slices((dict(df), labels))
+    return ds.shuffle(buffer_size=len(df))
 
 class models(object):
     """Model training and usage"""
@@ -27,8 +32,11 @@ class models(object):
     def __train_df(self, df: pd.DataFrame):
         df = df.rename(columns={"matricula": "target"})
 
-        df_train, df_val = train_test_split(df, test_size=0.2)
+        df_val = df.sample(frac=0.2)
+        df_train:Any = df.drop(df_val.index)
 
+        ds_train = df2ds(df_train)
+        ds_val   = df2ds(df_val)
         # TODO
 
     def predict(self) -> List[float]:
