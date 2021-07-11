@@ -24,6 +24,31 @@ class models(object):
         ds = tf.data.Dataset.from_tensor_slices((dict(df), labels))
         return ds.shuffle(buffer_size=len(df)).batch(batch_size)
 
+    def __encode(self, feature , name: str, ds: tf.data.Dataset):
+        layer = Normalization()
+
+        feature_ds = ds.map(lambda x, _: x[name])
+        feature_ds = feature_ds.map(lambda x: tf.expand_dims(x, -1))
+
+        layer.adapt(feature_ds)
+
+        return layer(feature)
+
+    def __make_model(self, inputs: List[str], ds: tf.data.Dataset) -> tf.keras.Model:
+        all_inputs = []
+        all_features = []
+
+        for input in inputs:
+            col = tf.keras.Input(shape=(1,), name=input)
+            encoded = self.__encode(col, input, ds)
+            all_inputs.append(col)
+            all_features.append(encoded)
+
+        x = tf.keras.layers.Dense(32, activation="relu")(tf.keras.layers.concatenate(all_features))
+        x = tf.keras.layers.Dropout(0.5)(x)
+        output = tf.keras.layers.Dense(1)(x)
+        return tf.keras.Model(all_inputs, output)
+
     def train(self):
         df = self.__get_df()
 
@@ -38,6 +63,15 @@ class models(object):
 
         ds_train = self.__df2ds(df_train)
         ds_val   = self.__df2ds(df_val)
+
+        model = self.__make_model(["test_val"], ds_train)
+
+        model.compile(
+            optimizer='adam',
+            loss=tf.keras.losses.BinaryCrossentropy(from_logits=True),
+            metrics=["accuracy"]
+        )
+        model.fit(ds_train, epochs=10, validation_data=ds_val)
         # TODO
 
     def predict(self) -> List[float]:
