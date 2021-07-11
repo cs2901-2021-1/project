@@ -3,11 +3,11 @@ from typing import List, Optional, Any
 import tensorflow as tf
 import pandas as pd
 
-def df2ds(df: pd.DataFrame, target: str = "target") -> tf.data.Dataset:
+def df2ds( df: pd.DataFrame, target: str = "target", batch_size = 32) -> tf.data.Dataset:
     df = df.copy()
     labels = df.pop(target)
     ds = tf.data.Dataset.from_tensor_slices((dict(df), labels))
-    return ds.shuffle(buffer_size=len(df))
+    return ds.shuffle(buffer_size=len(df)).batch(batch_size)
 
 class models(object):
     """Model training and usage"""
