@@ -49,10 +49,10 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             usuario = usuarioOptional.get();
 
             usuario = updateExistingUser(usuario, oAuth2UserInfo);
+            return UserPrincipal.create(usuario, oAuth2User.getAttributes());
         } else {
-            usuario = registerNewUser(oAuth2UserRequest, oAuth2UserInfo);
+            throw new OAuth2AuthenticationProcessingException("Email not found in the database");
         }
-        return UserPrincipal.create(usuario, oAuth2User.getAttributes());
     }
 
     private Usuario registerNewUser(OAuth2UserRequest oAuth2UserRequest, OAuth2UserInfo oAuth2UserInfo) {
