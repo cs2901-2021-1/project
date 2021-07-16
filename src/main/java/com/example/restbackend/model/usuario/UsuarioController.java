@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
-@PreAuthorize("hasAnyRole('ADMIN','USER')")
+//@PreAuthorize("hasAnyRole('ADMIN','USER')")
 @RequestMapping(path = "/user")
 public class UsuarioController {
     static final Logger logger = Logger.getLogger(UsuarioController.class.getName());
