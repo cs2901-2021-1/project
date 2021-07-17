@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,4 +23,14 @@ public class ProfileController {
     public Usuario currentUser(@CurrentUser UserPrincipal userPrincipal){
         return usuarioService.findOneByGoogleId(userPrincipal.getGoogleId());
     }
+/*
+    @RequestMapping("/login")
+    public Jwt login(@RequestBody LoginBody login) {
+        String accessToken = login.getAccessToken();
+        String email - login.getEmail();
+        request "https://oauth2.googleapis.com/tokeninfo?access_token=" + accessToken
+
+    }
+    */
+
 }

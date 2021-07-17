@@ -3,6 +3,7 @@ app:
   tokenExpirationMsec: 864000000
   authorizedRedirectUris:
     - http://localhost:3000/oauth2/redirect
+    - https://cs.mrg.com.pe/app-sec01-group03/oauth2/redirect
 spring:
   security:
     oauth2:
