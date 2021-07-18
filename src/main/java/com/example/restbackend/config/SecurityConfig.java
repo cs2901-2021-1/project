@@ -1,8 +1,8 @@
 package com.example.restbackend.config;
 
-import com.example.restbackend.security.RestAuthenticationEntryPoint;
-import com.example.restbackend.security.TokenAuthenticationFilter;
-import com.example.restbackend.security.oauth2.CustomOAuth2UserService;
+import com.example.restbackend.security.restAuth.RestAuthenticationEntryPoint;
+import com.example.restbackend.tokenSecurity.TokenAuthenticationFilter;
+import com.example.restbackend.service.CustomOAuth2UserService;
 import com.example.restbackend.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.example.restbackend.security.oauth2.OAuth2AuthenticationFailureHandler;
 import com.example.restbackend.security.oauth2.OAuth2AuthenticationSuccessHandler;
@@ -69,6 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.html",
                         "/**/*.css",
                         "/user/**",
+                        "/proyeccion/**",
                         "/**/*.js")
                 .permitAll()
                 .antMatchers("/auth/**", "/oauth2/**")

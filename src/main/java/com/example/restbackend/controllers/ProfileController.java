@@ -1,13 +1,11 @@
-package com.example.restbackend.security.oauth2;
+package com.example.restbackend.controllers;
 
+import com.example.restbackend.model.currentUser.CurrentUser;
 import com.example.restbackend.model.usuario.Usuario;
-import com.example.restbackend.model.usuario.UsuarioService;
-import com.example.restbackend.security.UserPrincipal;
+import com.example.restbackend.service.UsuarioService;
+import com.example.restbackend.model.currentUser.UserPrincipal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

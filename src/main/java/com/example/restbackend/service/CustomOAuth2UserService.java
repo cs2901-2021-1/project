@@ -1,12 +1,12 @@
-package com.example.restbackend.security.oauth2;
+package com.example.restbackend.service;
 
 import com.example.restbackend.custom_exception.OAuth2AuthenticationProcessingException;
 
 import com.example.restbackend.model.usuario.Usuario;
-import com.example.restbackend.model.usuario.UsuarioRepository;
-import com.example.restbackend.security.UserPrincipal;
-import com.example.restbackend.security.oauth2.oauth_user.OAuth2UserInfo;
-import com.example.restbackend.security.oauth2.oauth_user.OAuth2UserInfoFactory;
+import com.example.restbackend.repositories.UsuarioRepository;
+import com.example.restbackend.model.currentUser.UserPrincipal;
+import com.example.restbackend.model.oauth_user.OAuth2UserInfo;
+import com.example.restbackend.model.oauth_user.OAuth2UserInfoFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;

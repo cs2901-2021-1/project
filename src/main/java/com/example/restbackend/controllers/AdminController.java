@@ -1,6 +1,8 @@
-package com.example.restbackend.model.usuario;
+package com.example.restbackend.controllers;
 
+import com.example.restbackend.model.usuario.Usuario;
 import com.example.restbackend.model.usuario_dto.UsuarioDTO;
+import com.example.restbackend.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.logging.Logger;
 
 @RestController
-@RequestMapping(path = "/api-sec01-group01/admin")
+@RequestMapping(path = "/api-sec01-group03/admin")
 @PreAuthorize("hasRole('ADMIN')")
 public class AdminController {
     static final Logger logger = Logger.getLogger(AdminController.class.getName());

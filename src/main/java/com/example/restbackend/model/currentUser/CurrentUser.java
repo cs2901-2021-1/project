@@ -1,4 +1,4 @@
-package com.example.restbackend.security.oauth2;
+package com.example.restbackend.model.currentUser;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 

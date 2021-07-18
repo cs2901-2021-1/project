@@ -93,6 +93,4 @@ public class Usuario {
     public String toString() {
         return "Persona : " + "id = " + id + ", nombre =  " + name + ", email = " + email + " role: " + role;
     }
-
-
 }

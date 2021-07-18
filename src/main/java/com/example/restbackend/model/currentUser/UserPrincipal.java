@@ -1,4 +1,4 @@
-package com.example.restbackend.security;
+package com.example.restbackend.model.currentUser;
 
 import com.example.restbackend.model.usuario.Usuario;
 import org.springframework.security.core.GrantedAuthority;

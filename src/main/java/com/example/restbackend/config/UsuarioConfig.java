@@ -1,6 +1,8 @@
-package com.example.restbackend.model.usuario;
+package com.example.restbackend.config;
 
 
+import com.example.restbackend.model.usuario.Usuario;
+import com.example.restbackend.repositories.UsuarioRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,8 +29,16 @@ public class UsuarioConfig {
                     "ADMIN",
                     ""
             );
+            var tres = new Usuario(
+                    "Mateo",
+                    "mateo.noel@utec.edu.pe",
+                    "",
+                    "ADMIN",
+                    ""
+            );
             repository.saveAll(List.of(uno, dos));
         };
     }
- */
+     */
+
 }

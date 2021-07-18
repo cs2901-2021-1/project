@@ -1,8 +1,9 @@
-package com.example.restbackend.model.usuario;
+package com.example.restbackend.controllers;
 
 
+import com.example.restbackend.model.usuario.Usuario;
+import com.example.restbackend.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

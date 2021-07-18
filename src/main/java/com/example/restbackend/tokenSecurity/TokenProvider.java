@@ -1,6 +1,7 @@
-package com.example.restbackend.security;
+package com.example.restbackend.tokenSecurity;
 
 import com.example.restbackend.config.AppConfig;
+import com.example.restbackend.model.currentUser.UserPrincipal;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
