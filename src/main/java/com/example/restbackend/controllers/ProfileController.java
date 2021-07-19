@@ -21,14 +21,4 @@ public class ProfileController {
     public Usuario currentUser(@CurrentUser UserPrincipal userPrincipal){
         return usuarioService.findOneByGoogleId(userPrincipal.getGoogleId());
     }
-/*
-    @RequestMapping("/login")
-    public Jwt login(@RequestBody LoginBody login) {
-        String accessToken = login.getAccessToken();
-        String email - login.getEmail();
-        request "https://oauth2.googleapis.com/tokeninfo?access_token=" + accessToken
-
-    }
-    */
-
 }

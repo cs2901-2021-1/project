@@ -34,8 +34,7 @@ public class ProyeccionController {
 
     @GetMapping(path = "/findByCurCod/{curCod}")
     public Proyeccion getProyeccionCurso(String cudCod){
-        var curso = proyeccionService.findOneByCurCod(cudCod);
-        return curso;
+        return proyeccionService.findOneByCurCod(cudCod);
     }
 
     @GetMapping(path = "/proyeccionCarrera/{comCarrera}")
