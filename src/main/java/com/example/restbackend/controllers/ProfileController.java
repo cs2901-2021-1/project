@@ -1,9 +1,9 @@
 package com.example.restbackend.controllers;
 
-import com.example.restbackend.model.currentUser.CurrentUser;
+import com.example.restbackend.model.currentuser.CurrentUser;
 import com.example.restbackend.model.usuario.Usuario;
 import com.example.restbackend.service.UsuarioService;
-import com.example.restbackend.model.currentUser.UserPrincipal;
+import com.example.restbackend.model.currentuser.UserPrincipal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

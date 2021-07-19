@@ -4,7 +4,7 @@ import com.example.restbackend.custom_exception.OAuth2AuthenticationProcessingEx
 
 import com.example.restbackend.model.usuario.Usuario;
 import com.example.restbackend.repositories.UsuarioRepository;
-import com.example.restbackend.model.currentUser.UserPrincipal;
+import com.example.restbackend.model.currentuser.UserPrincipal;
 import com.example.restbackend.model.oauth_user.OAuth2UserInfo;
 import com.example.restbackend.model.oauth_user.OAuth2UserInfoFactory;
 import lombok.RequiredArgsConstructor;

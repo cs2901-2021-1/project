@@ -1,4 +1,4 @@
-package com.example.restbackend.tokenSecurity;
+package com.example.restbackend.tokensecurity;
 
 import com.example.restbackend.service.UsuarioService;
 import lombok.extern.slf4j.Slf4j;
