@@ -21,7 +21,7 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @GetMapping()
+    @GetMapping(path = "/users")
     public List<Usuario> getUsuarios() {
         return usuarioService.getUsuarios();
     }
