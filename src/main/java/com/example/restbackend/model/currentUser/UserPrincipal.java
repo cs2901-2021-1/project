@@ -40,15 +40,6 @@ public class UserPrincipal implements OAuth2User, UserDetails {
         return userPrincipal;
     }
 
-
-    public String getGoogleId() {
-        return id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
     @Override
     public String getPassword() {
         return null;

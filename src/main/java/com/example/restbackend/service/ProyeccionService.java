@@ -30,9 +30,6 @@ public class ProyeccionService {
     }
 
     public Collection<Proyeccion> findProyeccionByNomCarr(String nomCarr) {
-        Collection<Proyeccion> proyeccionOptional = proyeccionRepository.findProyeccionByNomCarr(nomCarr);
-        return proyeccionOptional;
+        return proyeccionRepository.findProyeccionByNomCarr(nomCarr);
     }
-
-
 }

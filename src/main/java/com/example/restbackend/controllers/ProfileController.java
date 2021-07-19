@@ -19,6 +19,6 @@ public class ProfileController {
     //@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     //@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public Usuario currentUser(@CurrentUser UserPrincipal userPrincipal){
-        return usuarioService.findOneByGoogleId(userPrincipal.getGoogleId());
+        return usuarioService.findOneByGoogleId(userPrincipal.getName());
     }
 }
