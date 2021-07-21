@@ -20,5 +20,11 @@ def predict():
 
     return Response(response, mimetype="application/json")
 
+@app.route("/courses")
+def courses():
+    response = dumps({})
+
+    return Response(response, mimetype="application/json")
+
 def main() -> None:
     app.run()
