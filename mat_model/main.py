@@ -60,5 +60,26 @@ WHERE ca.ISDELETED = 'N'
     return Response(dumps([loads(row[0]) for row in cursor]),
         mimetype="application/json")
 
+@app.route("/periods")
+def periods():
+    cursor = connect().cursor()
+
+    sql ="""
+SELECT JSON_OBJECT(
+    'periodoCod'   IS pp.CODPERIODO,
+    'periodoAlias' IS pp.NOMALIAS,
+    'fechaInicio'  IS pp2.FECHAINICIO,
+    'fechaFin'     IS pp2.FECHAFIN
+)
+FROM PROGRAMACION.PRO_PERIODO pp
+INNER JOIN PROGRAMACION.PRO_PERIODORANGO pp2 ON pp2.CODPERIODO = pp.CODPERIODO AND pp2.ISDELETED = 'N'
+WHERE pp.ISDELETED = 'N'
+    """
+
+    cursor.execute(sql)
+
+    return Response(dumps([loads(row[0]) for row in cursor]),
+        mimetype="application/json")
+
 def main() -> None:
     app.run()
