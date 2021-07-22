@@ -31,6 +31,26 @@ def train():
 @app.route("/predict")
 def predict():
     course = request.args.get("course")
+    period = request.args.get("period")
+
+    cursor = connect().cursor()
+
+    sql ="""
+SELECT aam2.CODALUMNO
+FROM ACADEMICO.ACA_ALUMNO_MATRICULA_DEMANDA aamd
+INNER JOIN ACADEMICO.ACA_ALUMNO_MATRICULA aam ON aam.CODALUMNOMATRICULA = aamd.CODALUMNOMATRICULA AND aam.ISDELETED = 'N'
+INNER JOIN ACADEMICO.ACA_ALUMNO_MALLA aam2 ON aam2.CODALUMNOMALLA = aam.CODALUMNOMALLA AND aam2.ISDELETED = 'N'
+WHERE aamd.ISDELETED = 'N'
+    AND aamd.CODCURSO       = :course
+    AND aam.CODPERIODORANGO = :period
+    """
+
+    cursor.execute(sql, course=course, period=period)
+
+    for line in cursor:
+        print(line[0])
+
+    # TODO
 
     # Dummy
     p = [0.5, 0.5]
