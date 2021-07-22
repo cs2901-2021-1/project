@@ -24,7 +24,33 @@ def connect():
 @app.route("/train")
 def train():
     course = request.args.get("course")
-    print(course)
+    cursor = connect().cursor()
+
+    sql="""
+SELECT aam2.CODALUMNO, aam.CODPERIODORANGO,
+CASE
+    WHEN aam.CODALUMNOMATRICULA IN (
+        SELECT CODALUMNOMATRICULA
+        FROM ACADEMICO.ACA_ALUMNO_MATRICULA_CURSO
+        WHERE ISDELETED = 'N'
+        ) THEN 1
+    ELSE 0
+END AS MATRICULADO
+FROM ACADEMICO.ACA_ALUMNO_MATRICULA_DEMANDA aamd
+INNER JOIN ACADEMICO.ACA_ALUMNO_MATRICULA aam
+    ON aam.CODALUMNOMATRICULA = aamd.CODALUMNOMATRICULA
+    AND aam.ISDELETED = 'N'
+INNER JOIN ACADEMICO.ACA_ALUMNO_MALLA aam2
+    ON aam2.CODALUMNOMALLA = aam.CODALUMNOMALLA
+    AND aam2.ISDELETED = 'N'
+WHERE aamd.ISDELETED = 'N'
+AND aamd.CODCURSO = :course
+    """
+
+    cursor.execute(sql, course=course)
+
+    for line in cursor:
+        print(line)
 
     return Response(course)
 
