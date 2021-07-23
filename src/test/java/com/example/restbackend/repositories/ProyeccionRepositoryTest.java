@@ -2,11 +2,11 @@ package com.example.restbackend.repositories;
 
 
 import com.example.restbackend.model.proyeccion.Proyeccion;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DataJpaTest
 class ProyeccionRepositoryTest {
@@ -24,7 +24,7 @@ class ProyeccionRepositoryTest {
         if(proyeccionOptional.isPresent())
             exists = true;
 
-        assertThat(exists).isTrue();
+        Assert.assertTrue(exists);
     }
 
     @Test
@@ -36,7 +36,7 @@ class ProyeccionRepositoryTest {
         if(proyeccionOptional.isPresent())
             exists = true;
 
-        assertThat(exists).isTrue();
+        Assert.assertTrue(exists);
     }
 
     @Test
@@ -48,7 +48,7 @@ class ProyeccionRepositoryTest {
         if(proyeccionOptional.isPresent())
             exists = true;
 
-        assertThat(exists).isTrue();
+        Assert.assertTrue(exists);
     }
 
     @Test
@@ -60,7 +60,7 @@ class ProyeccionRepositoryTest {
         if(!proyeccionOptional.isEmpty())
             exists = true;
 
-        assertThat(exists).isTrue();
+        Assert.assertTrue(exists);
     }
 
 }

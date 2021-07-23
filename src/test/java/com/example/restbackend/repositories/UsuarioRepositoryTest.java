@@ -1,11 +1,11 @@
 package com.example.restbackend.repositories;
 
 import com.example.restbackend.model.usuario.Usuario;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DataJpaTest
 class UsuarioRepositoryTest {
@@ -23,7 +23,7 @@ class UsuarioRepositoryTest {
         if(usuarioOptional.isPresent())
             exists = true;
 
-        assertThat(exists).isTrue();
+        Assert.assertTrue(exists);
     }
 
     @Test
@@ -35,7 +35,7 @@ class UsuarioRepositoryTest {
         if(usuarioOptional.isPresent())
             exists = true;
 
-        assertThat(exists).isTrue();
+        Assert.assertTrue(exists);
     }
 
     @Test
@@ -48,7 +48,7 @@ class UsuarioRepositoryTest {
         if(usuarioOptional.isPresent())
             exists = true;
 
-        assertThat(exists).isFalse();
+        Assert.assertTrue(exists);
     }
 
     @Test
@@ -61,6 +61,6 @@ class UsuarioRepositoryTest {
         if(usuarioOptional.isPresent())
             exists = true;
 
-        assertThat(exists).isFalse();
+        Assert.assertTrue(exists);
     }
 }
