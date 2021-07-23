@@ -9,18 +9,18 @@ public class Proyeccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(nullable = true)
-    private String nomCarrera;
     @Column(nullable = true, unique = true)
     private String codCurso;
     @Column(nullable = true, unique = true)
     private String nomCurso;
     @Column(nullable = true)
+    private String nomCarrera;
+    @Column(nullable = true)
     private long numAlumn;
 
     public Proyeccion(){}
 
-    public Proyeccion(String nomCarrera, String codCurso, String nomCurso, long numAlumn) {
+    public Proyeccion( String codCurso, String nomCurso, String nomCarrera, long numAlumn) {
         this.nomCarrera = nomCarrera;
         this.codCurso = codCurso;
         this.nomCurso = nomCurso;

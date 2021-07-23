@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.logging.Logger;
 
 @RestController
-@RequestMapping(path = "/api-sec01-group03/admin")
+@RequestMapping(path = "/admin")
 @PreAuthorize("hasRole('ADMIN')")
 public class AdminController {
     static final Logger logger = Logger.getLogger(AdminController.class.getName());
