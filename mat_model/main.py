@@ -3,6 +3,7 @@ from flask import Flask, Response, request
 from os import getenv
 
 import cx_Oracle
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -55,8 +56,14 @@ WHERE aamd.ISDELETED = 'N'
 
     cursor.execute(sql, course=course)
 
-    for line in cursor:
-        print(line)
+    df = pd.DataFrame(
+        [_ for _ in cursor],
+        columns=["numveces", "tiempo", "matricula"]
+    )
+
+    print(df)
+
+    # TODO
 
     return Response(course)
 
@@ -89,9 +96,9 @@ WHERE aamd.ISDELETED = 'N'
 
     cursor.execute(sql, course=course, period=period)
 
-    for line in cursor:
-        print(line[0])
+    df = pd.DataFrame([_ for _ in cursor], columns=["numveces", "tiempo"])
 
+    print(df)
     # TODO
 
     # Dummy
