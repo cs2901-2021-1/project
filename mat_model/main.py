@@ -1,11 +1,14 @@
 from json import dumps, loads
 from flask import Flask, Response, request
 from os import getenv
+from .models import models
 
 import cx_Oracle
 import pandas as pd
 
 app = Flask(__name__)
+columns = ["numveces", "tiempo"]
+target = "matricula"
 
 def connect():
     dsn = cx_Oracle.makedsn(
@@ -25,6 +28,10 @@ def connect():
 @app.route("/train")
 def train():
     course = request.args.get("course")
+
+    if course is None:
+        return Response() # TODO
+
     cursor = connect().cursor()
 
     sql="""
@@ -58,19 +65,22 @@ WHERE aamd.ISDELETED = 'N'
 
     df = pd.DataFrame(
         [_ for _ in cursor],
-        columns=["numveces", "tiempo", "matricula"]
+        columns=columns + [target]
     )
 
-    print(df)
+    m = models(course, columns, target)
 
-    # TODO
+    m.train(df)
 
-    return Response(course)
+    return Response()
 
 @app.route("/predict")
 def predict():
     course = request.args.get("course")
     period = request.args.get("period")
+
+    if course is None or period is None:
+        return Response() # TODO
 
     cursor = connect().cursor()
 
@@ -96,14 +106,12 @@ WHERE aamd.ISDELETED = 'N'
 
     cursor.execute(sql, course=course, period=period)
 
-    df = pd.DataFrame([_ for _ in cursor], columns=["numveces", "tiempo"])
+    df = pd.DataFrame([_ for _ in cursor], columns=columns)
 
-    print(df)
-    # TODO
+    m = models(course, columns, target)
 
     # Dummy
-    p = [0.5, 0.5]
-    response = dumps({"p": p})
+    response = dumps({"p": m.predict(df)})
 
     return Response(response, mimetype="application/json")
 
