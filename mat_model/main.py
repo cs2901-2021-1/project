@@ -110,7 +110,6 @@ WHERE aamd.ISDELETED = 'N'
 
     m = models(course, columns, target)
 
-    # Dummy
     response = dumps({"p": m.predict(df)})
 
     return Response(response, mimetype="application/json")

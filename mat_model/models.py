@@ -80,7 +80,7 @@ class models(object):
         """Get a vector p of probabilities."""
         model = self.__load_model()
 
-        if model is None:
+        if model is None or df.empty:
             return []
 
         input_dict = self.__df2tfdict(df)
