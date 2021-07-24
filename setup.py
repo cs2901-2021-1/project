@@ -17,6 +17,7 @@ setuptools.setup(
         "License :: Other/Proprietary License",
     ],
     install_requires=[
+        'cx-Oracle',
         'flask',
         'pandas',
         'tensorflow',

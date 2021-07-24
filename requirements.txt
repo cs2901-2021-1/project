@@ -1,3 +1,4 @@
+cx-Oracle
 flask
 pandas
 tensorflow
