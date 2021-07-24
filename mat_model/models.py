@@ -6,23 +6,13 @@ import pandas as pd
 
 class models(object):
     """Model training and usage"""
-    def __init__(self, course_id: str, students_path: str):
+    def __init__(self, course_id: str, inputs_cols: List[str], target_col: str):
         self.course_id     = course_id
-        self.students_path = students_path
-
-        # TODO
-        self.inputs_cols   = ["test_val", "test_val2"]
+        self.inputs_cols   = inputs_cols
+        self.target_col    = target_col
 
     def __model_path(self) -> str:
         return f"model-{self.course_id}"
-
-    def __get_df(self) -> Optional[pd.DataFrame]:
-        df = pd.read_csv(self.students_path)
-
-        if isinstance(df, pd.DataFrame):
-            return df
-        else:
-            return None
 
     def __df2ds(self, df: pd.DataFrame, target: str = "target", batch_size = 32) -> tf.data.Dataset:
         df = df.copy()
@@ -58,14 +48,8 @@ class models(object):
     def __save_model(self, model: tf.keras.Model):
         model.save(self.__model_path())
 
-    def train(self):
-        df = self.__get_df()
-
-        if df is not None:
-            self.__train_df(df)
-
-    def __train_df(self, df: pd.DataFrame):
-        df = df.rename(columns={"matricula": "target"})
+    def train(self, df: pd.DataFrame):
+        df = df.rename(columns={self.target_col: "target"})
 
         df_val = df.sample(frac=0.2)
         df_train:Any = df.drop(df_val.index)
@@ -92,16 +76,8 @@ class models(object):
         else:
             return None
 
-    def predict(self) -> List[float]:
+    def predict(self, df: pd.DataFrame) -> List[float]:
         """Get a vector p of probabilities."""
-        df = self.__get_df()
-
-        if df is not None:
-            return self.__predict_df(df)
-        else:
-            return []
-
-    def __predict_df(self, df: pd.DataFrame) -> List[float]:
         model = self.__load_model()
 
         if model is None:
@@ -109,7 +85,7 @@ class models(object):
 
         input_dict = self.__df2tfdict(df)
         predictions = model.predict(input_dict)
-        return [x[0] for x in tf.nn.sigmoid(predictions).numpy()]
+        return [float(x[0]) for x in tf.nn.sigmoid(predictions).numpy()]
 
     def __df2tfdict(self, df: pd.DataFrame) -> Dict:
         df_dict: Any = df.to_dict()

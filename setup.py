@@ -17,8 +17,10 @@ setuptools.setup(
         "License :: Other/Proprietary License",
     ],
     install_requires=[
+        'flask',
         'pandas',
         'tensorflow',
+        'waitress',
     ],
     entry_points={
         "console_scripts": [

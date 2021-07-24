@@ -7,7 +7,12 @@ pkgdesc="Modelos de matrículas"
 arch=('any')
 url=""
 license=('Custom')
-depends=("python-tensorflow" "python-pandas")
+depends=(
+	"python-flask"
+	"python-pandas"
+	"python-tensorflow"
+	"python-waitress"
+)
 makedepends=("python-setuptools")
 checkdepends=()
 optdepends=()
