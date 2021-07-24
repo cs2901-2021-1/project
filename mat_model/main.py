@@ -116,6 +116,7 @@ WHERE aamd.ISDELETED = 'N'
 
 @app.route("/courses")
 def courses():
+    period = request.args.get("period")
     cursor = connect().cursor()
 
     sql ="""
@@ -130,10 +131,20 @@ FROM CONFIGURACION.CON_ACTIVIDAD ca
 INNER JOIN GENERAL.GEN_AREA_FUNCIONAL gaf
     ON gaf.CODAREAFUNCIONAL = ca.CODAREAFUNCIONAL
     AND gaf.ISDELETED       = 'N'
+INNER JOIN PROGRAMACION.PRO_PERIODO pp
+    ON pp.CODPERIODO = :period
+    AND pp.ISDELETED = 'N'
+INNER JOIN PROGRAMACION.PRO_PERIODORANGO ppr
+    ON ppr.CODPERIODO = pp.CODPERIODO
+    AND pp.ISDELETED  = 'N'
+INNER JOIN PROGRAMACION.PRO_CURSO_PERIODO pcp
+    ON pcp.CODCURSO         = ca.CODACTIVIDAD
+    AND pcp.CODPERIODORANGO = ppr.CODPERIODORANGO
+    AND pcp.ISDELETED       = 'N'
 WHERE ca.ISDELETED = 'N'
     """
 
-    cursor.execute(sql)
+    cursor.execute(sql, period=period)
 
     return Response(dumps([loads(row[0]) for row in cursor]),
         mimetype="application/json")
