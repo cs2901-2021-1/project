@@ -12,14 +12,14 @@ target = "matricula"
 
 def connect():
     dsn = cx_Oracle.makedsn(
-        getenv("HOST"),
-        getenv("PORT"),
-        service_name = getenv("SID")
+        getenv("ORACLE_HOST"),
+        getenv("ORACLE_PORT"),
+        service_name = getenv("ORACLE_SID")
     )
 
     return cx_Oracle.connect(
-        user     = getenv("USER"),
-        password = getenv("PASSWORD"),
+        user     = getenv("ORACLE_USER"),
+        password = getenv("ORACLE_PASSWORD"),
         dsn      = dsn,
         encoding = "UTF-8"
     )
@@ -163,4 +163,4 @@ WHERE pp.ISDELETED = 'N'
         mimetype="application/json")
 
 def main() -> None:
-    app.run()
+    app.run(port=int(getenv("PORT", 5000)), host=("0.0.0.0"))
