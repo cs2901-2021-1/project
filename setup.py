@@ -20,8 +20,8 @@ setuptools.setup(
         'cx-Oracle',
         'flask',
         'pandas',
-        'tensorflow',
         'waitress',
+        # tensorflow
     ],
     entry_points={
         "console_scripts": [
