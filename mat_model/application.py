@@ -6,7 +6,7 @@ from .models import models
 import cx_Oracle
 import pandas as pd
 
-app = Flask(__name__)
+application = Flask(__name__)
 columns = ["numveces", "tiempo"]
 target = "matricula"
 
@@ -25,7 +25,7 @@ def connect():
     )
 
 
-@app.route("/train")
+@application.route("/train")
 def train():
     course = request.args.get("course")
 
@@ -74,7 +74,7 @@ WHERE aamd.ISDELETED = 'N'
 
     return Response()
 
-@app.route("/predict")
+@application.route("/predict")
 def predict():
     course = request.args.get("course")
     period = request.args.get("period")
@@ -114,7 +114,7 @@ WHERE aamd.ISDELETED = 'N'
 
     return Response(response, mimetype="application/json")
 
-@app.route("/courses")
+@application.route("/courses")
 def courses():
     period = request.args.get("period")
     cursor = connect().cursor()
@@ -149,7 +149,7 @@ WHERE ca.ISDELETED = 'N'
     return Response(dumps([loads(row[0]) for row in cursor]),
         mimetype="application/json")
 
-@app.route("/periods")
+@application.route("/periods")
 def periods():
     cursor = connect().cursor()
 
@@ -173,4 +173,4 @@ WHERE pp.ISDELETED = 'N'
         mimetype="application/json")
 
 def main() -> None:
-    app.run(port=int(getenv("PORT", 5000)), host=("0.0.0.0"))
+    application.run(port=int(getenv("PORT", 5000)), host=("0.0.0.0"))
