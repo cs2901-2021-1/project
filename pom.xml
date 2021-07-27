@@ -18,7 +18,7 @@
         <sonar.projectKey>cs2901-2021-1_project-backend-grupo3sinnombre</sonar.projectKey>
         <sonar.organization>cs2901-2021-1</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.exclusions>com/example/restbackend/config/*.java, com/example/restbackend/custom_exception/*.java, com/example/restbackend/security/*.java</sonar.exclusions>
+        <sonar.exclusions>src/main/java/com/example/restbackend/custom_exception/*.java, src/main/java/com/example/restbackend/security/oauth2/*.java, src/main/java/com/example/restbackend/security/restauth/RestAuthenticationEntryPoint.java</sonar.exclusions>
         <java.version>11</java.version>
     </properties>
     <dependencies>
