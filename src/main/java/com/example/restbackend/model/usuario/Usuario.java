@@ -34,7 +34,7 @@ public class Usuario {
 
     public Usuario(UsuarioDTO userDTO){
         this.id = userDTO.getIdDTO();
-        this.name = userDTO.getEmailDTO();
+        this.name = userDTO.getNameDTO();
         this.email = userDTO.getEmailDTO();
         this.imageUrl = userDTO.getImageUrlDTO();
         this.role = userDTO.getRoleDTO();
@@ -43,10 +43,6 @@ public class Usuario {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -61,13 +57,7 @@ public class Usuario {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
+    public String getImageUrl() { return imageUrl; }
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
@@ -87,6 +77,10 @@ public class Usuario {
 
     public void setGoogleId(String googleId) {
         this.googleId = googleId;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
