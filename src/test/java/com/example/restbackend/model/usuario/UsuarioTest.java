@@ -8,8 +8,10 @@ public class UsuarioTest {
 
     @Test
     public void constructors(){
+        var user = new Usuario();
         var usuario = new Usuario(new UsuarioDTO(1L,"usuario", "usuario@gmail.com", "asdfg", "ADMIN", "asdfasfa"));
         Assert.assertNotNull(usuario);
+        Assert.assertNotNull(user);
     }
 
     @Test
