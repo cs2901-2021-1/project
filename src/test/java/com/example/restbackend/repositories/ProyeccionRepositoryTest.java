@@ -14,6 +14,8 @@ class ProyeccionRepositoryTest {
     @Autowired
     private ProyeccionRepository underTest;
 
+
+
     @Test
     void findProyeccionByID() {
         var proyeccion = new Proyeccion("AB2", "ADA", "CS", 45);

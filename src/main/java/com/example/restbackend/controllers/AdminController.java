@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping(path = "/admin")
-@PreAuthorize("hasRole('ADMIN')")
 public class AdminController {
     static final Logger logger = Logger.getLogger(AdminController.class.getName());
     private final UsuarioService usuarioService;
