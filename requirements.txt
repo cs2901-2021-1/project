@@ -1,5 +1,5 @@
 cx-Oracle
 flask
 pandas
-tensorflow
+tensorflow-cpu
 waitress
