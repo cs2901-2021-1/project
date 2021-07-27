@@ -10,7 +10,7 @@ setuptools.setup(
     description = "Modelos de matrículas",
     long_description = long_description,
     long_description_content_type="text/markdown",
-    url="-", # noqa
+    url="https://github.com/cs2901-2021-1/project-backend-grupo3sinnombre",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
