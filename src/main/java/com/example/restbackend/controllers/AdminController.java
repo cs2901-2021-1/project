@@ -29,4 +29,9 @@ public class AdminController {
     public void deleteUsuarioByEmail(@PathVariable("userEmail") String userEmail ){
         usuarioService.deleteUsuario(userEmail);
     }
+
+    @PutMapping(path = "/updateRole/{userEmail}")
+    public void updateUsuarioByEmail(@PathVariable("userEmail") String userEmail, @RequestBody Usuario usuario){
+        usuarioService.updateUsuarioRole(userEmail, usuario.getRole());
+    }
 }

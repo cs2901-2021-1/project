@@ -29,11 +29,6 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
-    public Usuario findOneById(Long id) {
-        Optional<Usuario> userOptional = usuarioRepository.findById(id);
-        return userOptional.orElse(null);
-    }
-
     public Usuario findOneByEmail(String email) {
         Optional<Usuario> userOptional = usuarioRepository.findUsuarioByEmail(email);
         return userOptional.orElse(null);
@@ -52,11 +47,11 @@ public class UsuarioService {
         usuarioRepository.save(user);
     }
 
-    @Transactional
     public void updateUsuarioRole(String email, String role) {
         var user = usuarioRepository.findUsuarioByEmail(email)
                 .orElseThrow(() -> new CustomException("La persona con el email: " + email + ", no existe."));
         user.setRole(role);
+        usuarioRepository.save(user);
     }
 
     public void deleteUsuario(String email){
