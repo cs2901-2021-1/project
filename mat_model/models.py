@@ -1,8 +1,9 @@
-from typing import List, Optional, Any, Dict
+from subprocess import run
 from tensorflow.keras.layers.experimental.preprocessing import Normalization
+from typing import List, Optional, Any, Dict
 
-import tensorflow as tf
 import pandas as pd
+import tensorflow as tf
 
 class models(object):
     """Model training and usage"""
@@ -47,6 +48,7 @@ class models(object):
 
     def __save_model(self, model: tf.keras.Model):
         model.save(self.__model_path())
+        run(["tar", "acf", f"{self.__model_path()}.tar.zst", self.__model_path()])
 
     def train(self, df: pd.DataFrame):
         df = df.rename(columns={self.target_col: "target"})
@@ -69,6 +71,7 @@ class models(object):
         self.__save_model(model)
 
     def __load_model(self) -> Optional[tf.keras.Model]:
+        run(["tar", "xf", f"{self.__model_path()}.tar.zst"])
         model: Any =  tf.keras.models.load_model(self.__model_path())
 
         if isinstance(model, tf.keras.Model):
