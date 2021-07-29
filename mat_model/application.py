@@ -9,21 +9,23 @@ import pandas as pd
 application = Flask(__name__)
 columns = ["numveces", "tiempo"]
 target = "matricula"
+dsn = cx_Oracle.makedsn(
+    getenv("ORACLE_HOST"),
+    getenv("ORACLE_PORT"),
+    service_name = getenv("ORACLE_SID")
+)
+pool = cx_Oracle.SessionPool(
+    user      = getenv("ORACLE_USER"),
+    password  = getenv("ORACLE_PASSWORD"),
+    dsn       = dsn,
+    min       = 10,
+    max       = 10,
+    increment = 0,
+    encoding  = "UTF-8"
+)
 
 def connect():
-    dsn = cx_Oracle.makedsn(
-        getenv("ORACLE_HOST"),
-        getenv("ORACLE_PORT"),
-        service_name = getenv("ORACLE_SID")
-    )
-
-    return cx_Oracle.connect(
-        user     = getenv("ORACLE_USER"),
-        password = getenv("ORACLE_PASSWORD"),
-        dsn      = dsn,
-        encoding = "UTF-8"
-    )
-
+    return pool.acquire()
 
 @application.route("/train")
 def train():
