@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class ProyeccionTest {
-
+/*
     @Test
     public void constructor(){
         var proyeccion = new Proyeccion();
@@ -76,4 +76,6 @@ public class ProyeccionTest {
         var proyeccion = new Proyeccion("AB2", "ADA", "CS", 45);
         Assert.assertEquals("Proyeccion : id = 0, nombreCarrera =  CS, nombreCurso = ADA", proyeccion.toString());
     }
+    */
+
 }

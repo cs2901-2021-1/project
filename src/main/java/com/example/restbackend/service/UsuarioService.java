@@ -31,30 +31,21 @@ public class UsuarioService {
 
     public Usuario findOneById(Long id) {
         Optional<Usuario> userOptional = usuarioRepository.findById(id);
-        if (userOptional.isPresent())
-            return userOptional.get();
-        else
-            return null;
+        return userOptional.orElse(null);
     }
 
     public Usuario findOneByEmail(String email) {
         Optional<Usuario> userOptional = usuarioRepository.findUsuarioByEmail(email);
-        if (userOptional.isPresent())
-            return userOptional.get();
-        else
-            return null;
+        return userOptional.orElse(null);
     }
 
     public Usuario findOneByGoogleId(String googleId){
         Optional<Usuario> userOptional = usuarioRepository.findUsuarioByGoogleId(googleId);
-        if (userOptional.isPresent())
-            return userOptional.get();
-        else
-            return null;
+        return userOptional.orElse(null);
     }
 
     public void addNewUsuario(Usuario user) {
-        Optional<Usuario> userOptional = usuarioRepository.findById(user.getId());
+        Optional<Usuario> userOptional = usuarioRepository.findUsuarioByEmail(user.getEmail());
         if (userOptional.isPresent()) {
             throw new CustomException("Este usuario ya se encuentra registrado");
         }

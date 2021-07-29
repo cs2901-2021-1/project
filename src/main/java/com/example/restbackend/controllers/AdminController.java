@@ -21,9 +21,8 @@ public class AdminController {
     }
 
     @PostMapping(path = "/addUser")
-    public void registerNewUsuario(@RequestBody UsuarioDTO userDTO) {
-        var user = new Usuario(userDTO);
-        usuarioService.addNewUsuario(user);
+    public void registerNewUsuario(@RequestBody Usuario usuario) {
+        usuarioService.addNewUsuario(usuario);
     }
 
     @DeleteMapping(path = "/deleteByEmail/{userEmail}")

@@ -9,15 +9,9 @@ public class UsuarioTest {
     @Test
     public void constructors(){
         var user = new Usuario();
-        var usuario = new Usuario(new UsuarioDTO(1L,"usuario", "usuario@gmail.com", "asdfg", "ADMIN", "asdfasfa"));
+        var usuario = new Usuario(new UsuarioDTO("usuario", "usuario@gmail.com", "asdfg", "ADMIN", "asdfasfa"));
         Assert.assertNotNull(usuario);
         Assert.assertNotNull(user);
-    }
-
-    @Test
-    public void testGetId() {
-        var usuario = new Usuario("usuario", "usuario@gmail.com", "asdfg", "ADMIN", "asdfasfa");
-        Assert.assertNull(usuario.getId());
     }
 
     @Test

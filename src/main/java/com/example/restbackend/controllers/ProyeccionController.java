@@ -32,14 +32,9 @@ public class ProyeccionController {
         return proyeccionService.getProyecciones();
     }
 
-    @GetMapping(path = "/findByCurCod/{curCod}")
-    public Proyeccion getProyeccionCurso(String cudCod){
-        return proyeccionService.findOneByCurCod(cudCod);
-    }
-
-    @GetMapping(path = "/proyeccionCarrera/{comCarrera}")
-    public Collection<Proyeccion> getProyeccionCarrera(String comCarrera){
-        return proyeccionService.findProyeccionByNomCarr(comCarrera);
+    @GetMapping(path = "/findByCursoCod/{cursoCod}")
+    public Proyeccion getProyeccionCurso(String cursoCod){
+        return proyeccionService.findOneByCursoCod(cursoCod);
     }
 
     @GetMapping(path = "/export")
@@ -55,8 +50,8 @@ public class ProyeccionController {
         var proyecciones = proyeccionService.getProyecciones();
         ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
 
-        String[] csvHeader = {"ID", "Nombre Carrera", "Codigo Curso", "Nombre del curso", "Numero de alumnos"};
-        String[] nameMapping = {"id", "nomCarrera", "codCurso", "nomCurso", "numAlumn"};
+        String[] csvHeader = {"Id Curso", "Desc. Curso", "Cod. Curso", "Area Funcional Id", "Area Funcional Desc.", "Numero de Alumnos"};
+        String[] nameMapping = {"cursoId",  "cursoDesc", "cursoCod","areaFunId", "areaFunDesc", "numAlumn"};
         csvWriter.writeHeader(csvHeader);
 
         for(var proyeccion: proyecciones){

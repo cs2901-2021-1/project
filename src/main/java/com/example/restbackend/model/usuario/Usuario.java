@@ -9,12 +9,9 @@ import javax.persistence.*;
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String email;
     @Column(nullable = true)
     private String name;
-    @Column(nullable = false, unique = true)
-    private String email;
     @Column(nullable = true)
     private String imageUrl;
     @Column(nullable = true)
@@ -23,6 +20,11 @@ public class Usuario {
     private String googleId;
 
     public Usuario(){}
+
+    public Usuario(String email, String role){
+        this.email = email;
+        this.role = role;
+    }
 
     public Usuario( String name, String email, String imageUrl, String role, String googleId) {
         this.name = name;
@@ -33,16 +35,11 @@ public class Usuario {
     }
 
     public Usuario(UsuarioDTO userDTO){
-        this.id = userDTO.getIdDTO();
         this.name = userDTO.getNameDTO();
         this.email = userDTO.getEmailDTO();
         this.imageUrl = userDTO.getImageUrlDTO();
         this.role = userDTO.getRoleDTO();
         this.googleId = userDTO.getGoogleIdDTO();
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getName() {
@@ -85,6 +82,6 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Persona : " + "id = " + id + ", nombre =  " + name + ", email = " + email + " role: " + role;
+        return "Persona : " +  ", nombre =  " + name + ", email = " + email + " role: " + role;
     }
 }

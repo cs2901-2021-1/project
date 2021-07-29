@@ -7,52 +7,26 @@ import javax.persistence.*;
 public class Proyeccion {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column(nullable = true, unique = true)
-    private String codCurso;
-    @Column(nullable = true, unique = true)
-    private String nomCurso;
+    private long cursoId;
     @Column(nullable = true)
-    private String nomCarrera;
+    private String cursoDesc;
+    @Column(nullable = true)
+    private String cursoCod;
+    @Column(nullable = true)
+    private String areaFunId;
+    @Column(nullable = true)
+    private String areaFunDesc;
     @Column(nullable = true)
     private long numAlumn;
 
     public Proyeccion(){}
 
-    public Proyeccion( String codCurso, String nomCurso, String nomCarrera, long numAlumn) {
-        this.nomCarrera = nomCarrera;
-        this.codCurso = codCurso;
-        this.nomCurso = nomCurso;
-        this.numAlumn = numAlumn;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getNomCarrera() {
-        return nomCarrera;
-    }
-
-    public void setNomCarrera(String nomCarrera) {
-        this.nomCarrera = nomCarrera;
-    }
-
-    public String getCodCurso() {
-        return codCurso;
-    }
-
-    public void setCodCurso(String codCurso) {
-        this.codCurso = codCurso;
-    }
-
-    public String getNomCurso() {
-        return nomCurso;
-    }
-
-    public void setNomCurso(String nomCurso) {
-        this.nomCurso = nomCurso;
+    public Proyeccion(long cursoId, String cursoDesc, String cursoCod, String areaFunId, String areaFunDesc) {
+        this.cursoId = cursoId;
+        this.cursoDesc = cursoDesc;
+        this.cursoCod = cursoCod;
+        this.areaFunId = areaFunId;
+        this.areaFunDesc = areaFunDesc;
     }
 
     public long getNumAlumn() {
@@ -63,10 +37,43 @@ public class Proyeccion {
         this.numAlumn = numAlumn;
     }
 
+    public long getCursoId() {
+        return cursoId;
+    }
 
-    @Override
-    public String toString() {
-        return "Proyeccion : " + "id = " + id + ", nombreCarrera =  " + nomCarrera
-                + ", nombreCurso = " + nomCurso;
+    public void setCursoId(long cursoId) {
+        this.cursoId = cursoId;
+    }
+
+    public String getCursoDesc() {
+        return cursoDesc;
+    }
+
+    public void setCursoDesc(String cursoDesc) {
+        this.cursoDesc = cursoDesc;
+    }
+
+    public String getCursoCod() {
+        return cursoCod;
+    }
+
+    public void setCursoCod(String cursoCod) {
+        this.cursoCod = cursoCod;
+    }
+
+    public String getAreaFunId() {
+        return areaFunId;
+    }
+
+    public void setAreaFunId(String areaFunId) {
+        this.areaFunId = areaFunId;
+    }
+
+    public String getAreaFunDesc() {
+        return areaFunDesc;
+    }
+
+    public void setAreaFunDesc(String areaFunDesc) {
+        this.areaFunDesc = areaFunDesc;
     }
 }
