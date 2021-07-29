@@ -1,3 +1,4 @@
+from boto3 import client
 from subprocess import run
 from tensorflow.keras.layers.experimental.preprocessing import Normalization
 from typing import List, Optional, Any, Dict
@@ -6,6 +7,8 @@ import pandas as pd
 import tensorflow as tf
 
 class models(object):
+    s3_bucket = "tensorflow-predict"
+
     """Model training and usage"""
     def __init__(self, course_id: str, inputs_cols: List[str], target_col: str):
         self.course_id     = course_id
@@ -48,7 +51,10 @@ class models(object):
 
     def __save_model(self, model: tf.keras.Model):
         model.save(self.__model_path())
-        run(["tar", "acf", f"{self.__model_path()}.tar.zst", self.__model_path()])
+        tarball = f"{self.__model_path()}.tar.zst"
+
+        run(["tar", "acf", tarball, self.__model_path()])
+        client("s3").upload_file(tarball, models.s3_bucket, tarball)
 
     def train(self, df: pd.DataFrame):
         df = df.rename(columns={self.target_col: "target"})
