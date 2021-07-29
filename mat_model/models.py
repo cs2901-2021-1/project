@@ -1,4 +1,5 @@
 from boto3 import client
+from os.path import isfile
 from subprocess import run
 from tensorflow.keras.layers.experimental.preprocessing import Normalization
 from typing import List, Optional, Any, Dict
@@ -77,7 +78,12 @@ class models(object):
         self.__save_model(model)
 
     def __load_model(self) -> Optional[tf.keras.Model]:
-        run(["tar", "xf", f"{self.__model_path()}.tar.zst"])
+        tarball = f"{self.__model_path()}.tar.zst"
+
+        if not isfile(tarball):
+            client("s3").download_file(models.s3_bucket, tarball, tarball)
+
+        run(["tar", "xf", tarball])
         model: Any =  tf.keras.models.load_model(self.__model_path())
 
         if isinstance(model, tf.keras.Model):
