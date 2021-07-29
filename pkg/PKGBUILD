@@ -8,6 +8,7 @@ arch=('any')
 url=""
 license=('Custom')
 depends=(
+	"python-boto3"
 	"python-cx_oracle"
 	"python-flask"
 	"python-pandas"

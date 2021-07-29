@@ -17,10 +17,11 @@ setuptools.setup(
         "License :: Other/Proprietary License",
     ],
     install_requires=[
-        'cx-Oracle',
-        'flask',
-        'pandas',
-        'waitress',
+        "boto3",
+        "cx-Oracle",
+        "flask",
+        "pandas",
+        "waitress",
         # tensorflow
     ],
     entry_points={
