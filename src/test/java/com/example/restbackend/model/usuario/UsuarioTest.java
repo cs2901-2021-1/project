@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class UsuarioTest {
+    /*
 
     @Test
     public void constructors(){
@@ -88,5 +89,6 @@ public class UsuarioTest {
         System.out.println(data);
         Assert.assertEquals("Persona : , nombre =  usuario, email = usuario@gmail.com role: ADMIN", usuario.toString());
     }
+    */
 
 }
