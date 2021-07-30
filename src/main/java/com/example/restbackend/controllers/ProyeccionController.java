@@ -47,7 +47,7 @@ public class ProyeccionController {
         String headerValue = "attachment; filename=proyeccion_" + currentDateTime + ".csv";
         response.setHeader(headerKey, headerValue);
 
-        var proyecciones = proyeccionService.getProyecciones();
+        var proyecciones = proyeccionService.getProyeccionesDb();
         ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
 
         String[] csvHeader = {"Id Curso", "Desc. Curso", "Cod. Curso", "Area Funcional Id", "Area Funcional Desc.", "Numero de Alumnos"};
