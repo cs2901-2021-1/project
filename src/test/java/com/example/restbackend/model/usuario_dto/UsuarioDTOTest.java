@@ -6,17 +6,11 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class UsuarioDTOTest {
-/*
+
     @Test
     public void constructors(){
         var usuario = new UsuarioDTO();
         Assert.assertNotNull(usuario);
-    }
-
-    @Test
-    public void testGetIdDTO() {
-        var usuario = new UsuarioDTO("usuario", "usuario@gmail.com", "asdfg", "ADMIN", "asdfasfa");
-        Assert.assertNotNull(usuario.getIdDTO());
     }
 
     @Test
@@ -48,5 +42,5 @@ public class UsuarioDTOTest {
         var usuario = new UsuarioDTO("usuario", "usuario@gmail.com", "asdfg", "ADMIN", "asdfasfa");
         Assert.assertEquals("asdfasfa", usuario.getGoogleIdDTO());
     }
-    */
+
 }
