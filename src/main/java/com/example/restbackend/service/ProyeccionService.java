@@ -24,6 +24,10 @@ public class ProyeccionService {
     public ProyeccionService(ProyeccionRepository proyeccionRepository) {
         this.proyeccionRepository = proyeccionRepository;
     }
+    
+    public List<Proyeccion> getProyeccionesDb(){
+        return proyeccionRepository.findAll();
+    }
 
     public List<Proyeccion> getProyecciones() {
         getCursos();
