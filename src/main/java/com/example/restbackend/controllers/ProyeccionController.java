@@ -33,7 +33,7 @@ public class ProyeccionController {
     }
     
     @GetMapping(path = "/proyeccionGeneralDB")
-    public List<Proyeccion> getProyecciones(){
+    public List<Proyeccion> getProyeccionesDB(){
         return proyeccionService.getProyeccionesDb();
     }
 
