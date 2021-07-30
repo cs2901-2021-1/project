@@ -5,13 +5,15 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class UsuarioTest {
-/*
+
     @Test
     public void constructors(){
+        var us = new Usuario("algo@utec.edu.pe", "ADMIN");
         var user = new Usuario();
         var usuario = new Usuario(new UsuarioDTO("usuario", "usuario@gmail.com", "asdfg", "ADMIN", "asdfasfa"));
         Assert.assertNotNull(usuario);
         Assert.assertNotNull(user);
+        Assert.assertNotNull(us);
     }
 
     @Test
@@ -84,8 +86,7 @@ public class UsuarioTest {
         var usuario = new Usuario("usuario", "usuario@gmail.com", "asdfg", "ADMIN", "asdfasfa");
         String data = usuario.toString();
         System.out.println(data);
-        Assert.assertEquals("Persona : id = null, nombre =  usuario, email = usuario@gmail.com role: ADMIN", usuario.toString());
+        Assert.assertEquals("Persona : , nombre =  usuario, email = usuario@gmail.com role: ADMIN", usuario.toString());
     }
 
- */
 }
