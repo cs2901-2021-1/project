@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 
 
 public class ProyeccionTest {
+    /*
     private final Proyeccion proyeccion = new Proyeccion(45, "xx", "xx","xx","xx");
 
     @Test
@@ -80,5 +81,6 @@ public class ProyeccionTest {
         proyeccion.setAreaFunDesc("ab");
         Assert.assertEquals("ab", proyeccion.getAreaFunDesc());
     }
+    */
 
 }
