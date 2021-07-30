@@ -31,6 +31,11 @@ public class ProyeccionController {
     public List<Proyeccion> getProyecciones(){
         return proyeccionService.getProyecciones();
     }
+    
+    @GetMapping(path = "/proyeccionGeneralDB")
+    public List<Proyeccion> getProyecciones(){
+        return proyeccionService.getProyeccionesDb();
+    }
 
     @GetMapping(path = "/findByCursoCod/{cursoCod}")
     public Proyeccion getProyeccionCurso(String cursoCod){
